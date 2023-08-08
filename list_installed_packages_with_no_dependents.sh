@@ -15,7 +15,7 @@ awk '! /Reverse Depends:/ {
 }
 
 /Reverse Depends:/ {
-    if (n == 1) {
+    if (n == 1 && NR != 2) {
         print p
     }
     n = 0
