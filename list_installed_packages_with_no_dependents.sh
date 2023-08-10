@@ -7,7 +7,7 @@ filename=packages_no_dependents.txt
 echo "The following packages are not a dependency to any installed package:" > $filename
 
 # Get all installed packages that do not have a 'Priority' of 'required', 'important' or 'standard' and do not have packages that depend on them
-dpkg-query -Wf '${Package} ${Status;-26}${Priority}\n' | sort -b -k5,5 -k1,1 | grep -v 'required\|important\|standard' | grep 'installed' | awk '{ print $1 }' |
+dpkg-query -Wf '${Package} ${Status;-26}${Priority}\n' | grep -v 'required\|important\|standard' | grep 'installed' | awk '{ print $1 }' |
 xargs apt-cache rdepends --installed |
 awk '! /Reverse Depends:/ {
     tp = $0
